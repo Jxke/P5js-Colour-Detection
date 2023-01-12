@@ -4,9 +4,9 @@ function setup() {
 }
 
 function draw() {
-    background(0); // Step 1: Drawing the Background
+    background(255); // Step 1: Drawing the Background
     noStroke();
-    fill(255);
+    fill(0);
     circle(200, 150, 20); // Step 1: Drawing the Circle
     // circle(mouseX, mouseY,24); // Step 2: Manipulating the Circle's Pos
 }
