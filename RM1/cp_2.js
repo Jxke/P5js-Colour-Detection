@@ -14,3 +14,5 @@ function setup() {
 function draw() {
   image(video, 0, 0); //Step 1: Drawing the Pixels
 }
+
+createCapture()
