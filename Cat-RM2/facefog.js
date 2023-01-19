@@ -4,6 +4,8 @@ let detections = []; //var to store anything returning from API
 let video;
 let canvas;
 
+let varFog;
+
 function setup() {
     canvas = createCanvas(480, 360);
     canvas.id("canvas");
@@ -54,11 +56,19 @@ function draw(){
             // let rectHeight = detections[f].alignedRect._box._height;
 
             let {_x, _y, _width, _height} = detections[f].alignedRect._box;
+            
 
-            stroke(255,255,255);
-            strokeWeight(1);
-            noFill();
-            rect(_x,_y,_width,_height);
+            // stroke(255,255,255,varWhite++);
+            // strokeWeight(1);
+            // noFill();
+            // rect(_x,_y,_width,_height);
+
+            let varFog = map(_height, 200, 90, 255, 0);
+            background(255,255,255,varFog++);
+
+
         }
+
+    
     }
   }
