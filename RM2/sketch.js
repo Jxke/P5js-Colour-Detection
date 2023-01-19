@@ -4,6 +4,8 @@ let detections = []; //variable to store anything that reutnrs from the api
 let video;
 let canvas;
 
+let rectHeight;
+
 function setup() {
     canvas = createCanvas(480,360);
     canvas.id("canvas");
@@ -41,26 +43,23 @@ function gotFaces(error,result){
     faceapi.detect(gotFaces);
 }
 
-function draw() {
-
-    
-}
-
 function drawBoxes(detections){
     if(detections.length >0){
         for(f=0; f < detections.length; f++){
             // let x = detections[f].alignedRect._box._x;
             // let y = detections[f].alignedRect._box._y;
-            // let rectWidth = detections[f].alignedRect._box._width;
-            // let rectHeight = detections[f].alignedRect._box._height;
+            rectWidth = detections[f].alignedRect._box._width;
+            rectHeight = detections[f].alignedRect._box._height;
 
             let {_x, _y, _width, _height} = detections[f].alignedRect.box;
         
-
-            stroke(255,255,255);
-            strokeWeight(1);
-            noFill();
-            rect(_x,_y,_width,_height);
+            fill(255,255,255,rectHeight-5);
+            noStroke();
+            rect(0, 0, 480, 360);
+            }
         }
-    }
+}
+
+function draw() {
+
 }
