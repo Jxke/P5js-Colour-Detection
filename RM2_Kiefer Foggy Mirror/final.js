@@ -4,6 +4,8 @@ let detections = []; // returns from faceapi
 let video;
 let canvas;
 
+let varWhite = 0;
+
 function setup() {
   canvas = createCanvas(480, 360);
   canvas.id("canvas");
@@ -52,10 +54,17 @@ function drawBoxes(detections){
             // let rectWidth = detections[f].alignedRect._box._width;
             // let rectHeight = detections[f].alignedRect._box._height;
             let {_x, _y, _width, _height} = detections[f].alignedRect._box;
-            stroke(255,255,255);
-            strokeWeight(1);
-            noFill();
-            rect(_x,_y,_width,_height);
+
+            console.log(_height);
+
+            //stroke(255,255,255);
+            //strokeWeight(1);
+            // noFill();
+            // rect(_x,_y,_width,_height);
+
+            let varFog = map(_height,200,120,255,0);
+            background(255,255,255,varFog++);
+            
         }
     }
 }
