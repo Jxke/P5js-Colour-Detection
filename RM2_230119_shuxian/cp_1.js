@@ -1,4 +1,5 @@
 let faceapi; // variable to store faceapi
+let detections = []; // returns from faceapi
 
 let video; 
 let canvas; 
