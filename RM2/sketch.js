@@ -10,10 +10,44 @@ function setup() {
     video = createCapture(VIDEO);
     video.size(width,height);
 
-    faceapi = ml5.faceApi(video,_____,____)
+    const faceOptions = {
+        withLandmarks: true,
+        withExpressions: true,
+        withDescriptors: true,
+        minConfidence: 0.5 //threshold for result
+      };
+
+    faceapi = ml5.faceApi(video,faceOptions,faceReady)
 
 }
 
+function faceReady(){
+    faceapi.detect(gotFaces);
+}
+
+function gotFaces(error, result){
+    if (error){
+        console.log(error);
+        return;
+    }
+    detections = result;
+    console.log(detections);
+}
+
 function draw() {
+    clear();
+    if (detections.length > 0) {
+        for (f=0; f < detections.length; f++){
+            let x = detections[f].alignedRect._box._x;
+            let y = detections[f].alignedRect._box._y;
+            let rectWidth = detections[f].alignedRect._box._width;
+            let rectHeight = detections[f].alignedRect._box._height;
+
+            stroke(255,255,255);
+            strokeWeight(1);
+            noFill();
+            rect(x,y,rectWidth,rectHeight);
+        }
+    }
 
 }
