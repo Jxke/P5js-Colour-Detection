@@ -1,17 +1,12 @@
-/*
-COLOR TRACKING
-Jeff Thompson | 2017/21 | jeffreythompson.org
-
-Adapted by Jake Tan for DM2007 Tutorial
-*/
-
 // how much wiggle-room is allowed when matching the color?
-let tolerance = 5;
+let tolerance = 10;
 
 // color to look for (set with mouse click)
 let colorToMatch;
 
 let video;
+
+let cState = false;
 
 
 function setup() {
@@ -28,7 +23,17 @@ function setup() {
 
 
 function draw() {
-    image(video, 0, 0);
+  background (0,10);
+    if (cState == false) {
+      translate(640,0);
+      scale(-1,1);
+      image(video, 0, 0);
+    } 
+    else{
+      //background(225);
+      
+// default state
+      
 
     // get the first matching pixel
     // in the image
@@ -38,12 +43,12 @@ function draw() {
     // then draw a circle in that location
     if (firstPx !== undefined) {
         fill(colorToMatch);
-        stroke(255);
-        strokeWeight(2);
+        noStroke(255);
         circle(firstPx.x, firstPx.y, 30);
+
     }
 }
-
+}
 
 // use the mouse to select a color to track
 function mousePressed() {
@@ -54,6 +59,9 @@ function mousePressed() {
     // note we use get() here, which is probably
     // ok since it's one pixel – could def do this
     // with pixels[index] too
+  
+    cState = true;
+    background(0)
 }
 
 
@@ -107,4 +115,3 @@ function findColor(input, c, tolerance) {
     // if no match was found, return 'undefined'
     return undefined;
 }
-
